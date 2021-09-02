@@ -11,19 +11,15 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.7/jquery.timeago.min.js"
+    integrity="sha512-RlGrSmkje9EE/FXpJKWf0fvOlg4UULy/blvNsviBX9LFwMj/uewXVoanRbxTIRDXy/0A3fBQppTmJ/qOboJzmA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/8.10.0/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <!-- <script defer src="/__/firebase/8.10.0/firebase-auth.js"></script> -->
   <script defer src="/__/firebase/8.10.0/firebase-database.js"></script>
-  <!-- <script defer src="/__/firebase/8.10.0/firebase-firestore.js"></script>
-  <script defer src="/__/firebase/8.10.0/firebase-functions.js"></script>
-  <script defer src="/__/firebase/8.10.0/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/8.10.0/firebase-storage.js"></script>
-  <script defer src="/__/firebase/8.10.0/firebase-analytics.js"></script>
-  <script defer src="/__/firebase/8.10.0/firebase-remote-config.js"></script>
-  <script defer src="/__/firebase/8.10.0/firebase-performance.js"></script> -->
-
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -40,7 +36,9 @@
     }
 
     .card-header {
+      display: flex;
       font-weight: bold;
+      justify-content: space-between;
     }
 
     .level {
@@ -107,7 +105,7 @@
         // They have nothing for sale
         return
       }
-      let newHTML = `<div class="card-header">${name} <span class="server">${data.server}</span></div>`
+      let newHTML = `<div class="card-header"><div>${name} <span class="server">${data.server}</span></div><div><span class="lastseen">Last Seen: <span class="lastseen-date" title="${new Date(data.lastSeen)}"></span></div></div>`
       // TODO: Make the data prettier
       newHTML += `<div class="card-body">
   <div class="row text-center">
@@ -142,8 +140,9 @@
       if (merchantDiv) merchantDiv.innerHTML = newHTML
       else {
         const dataDiv = document.getElementById("data")
-        dataDiv.innerHTML += `<div id="${name}" class="card">${newHTML}</div>`
+        dataDiv.innerHTML = `<div id="${name}" class="card">${newHTML}</div>` + dataDiv.innerHTML
       }
+      $('.lastseen-date').timeago();
     }
     document.addEventListener('DOMContentLoaded', async () => {
       try {
