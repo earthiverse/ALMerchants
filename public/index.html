@@ -143,6 +143,7 @@
           if (slot.level !== undefined) item += `<span class="level">level ${slot.level}</span> `
           if (slot.p !== undefined) item += `<span class="special ${slot.p}">${slot.p}</span> `
           item += slot.name
+          if (slot.data !== undefined) item += ` (<span class="data ${slot.data}">${slot.data}</span>)`
           let buying = "Buying"
           if (slot.q !== undefined) buying += ` <span class="quantity">x${slot.q}</span>`
           newHTML += `<div class="buying row text-center"><div class="col">${buying}</div><div class="col">${item}</div><div class="col">${slot.price.toLocaleString()}</div></div>`
@@ -152,6 +153,7 @@
           if (slot.level !== undefined) item += `<span class="level">level ${slot.level}</span> `
           if (slot.p !== undefined) item += `<span class="special ${slot.p}">${slot.p}</span> `
           item += slot.name
+          if (slot.data !== undefined) item += ` (<span class="data ${slot.data}">${slot.data}</span>)`
           let selling = "Selling"
           if (slot.q !== undefined) selling += ` <span class="quantity">x${slot.q}</span>`
           newHTML += `<div class="selling row text-center"><div class="col">${selling}</div><div class="col">${item}</div><div class="col">${slot.price.toLocaleString()}</div></div>`
