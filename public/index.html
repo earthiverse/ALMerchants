@@ -107,7 +107,7 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-4 justify-content-center mb-md-0 fs-3">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+          <li><a href="about.html" class="nav-link px-2 text-white">About</a></li>
         </ul>
       </div>
     </div>
@@ -125,7 +125,7 @@
         // They have nothing for sale
         return
       }
-      let newHTML = `<div class="card-header"><div>${name} <span class="server">${data.server}</span></div><div><span class="lastseen">Last Seen: <span class="lastseen-date" title="${new Date(data.lastSeen)}"></span></div></div>`
+      let newHTML = `<div class="card-header"><div>${name} <span class="server">${data.server}</span></div><div><span class="lastseen">Last Seen: <span class="lastseen-date" title="${new Date(data.lastSeen).toISOString()}"></span></div></div>`
       // TODO: Make the data prettier
       newHTML += `<div class="card-body">
   <div class="row text-center">
