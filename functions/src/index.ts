@@ -1,12 +1,10 @@
-import * as admin from "firebase-admin";
+import admin from "firebase-admin";
 import * as functions from "firebase-functions";
 import {SecretManagerServiceClient} from "@google-cloud/secret-manager"
-
-import * as AL from "alclient"
-import { ItemDataTrade, ItemName, TradeSlotType } from "alclient";
+import AL, { ItemDataTrade, ItemName, TradeSlotType } from "alclient";
 
 // Log console logs
-require("firebase-functions/lib/logger/compat");
+import "firebase-functions/lib/logger/compat"
 
 // Setup
 admin.initializeApp();
@@ -31,6 +29,7 @@ export const updateMerchants = functions.https.onRequest(async (req, res) => {
   const now = Date.now()
   const today = now - now % (60*60*24)
   res.send({data: merchantData})
+
 
   // Update merchant data
   for(const merchant of merchantData) {
